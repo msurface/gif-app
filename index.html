@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="./javaScript/javaScript.js"></script>
+    <title>Giphy App -- API & Axios Practice</title>
+  </head>
+  <body>
+    <header>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Giphy App</h1>
+          <p class="lead">
+            Giphy App uses GIPHY's API, axios, vanilla javaScript, Bootstrap,
+            and CSS to make a quick response web app.
+          </p>
+        </div>
+      </div>
+    </header>
+    <div class="form-area">
+      <form action="" id="gif-form">
+        <label for="gif-input">Search for a Gif</label>
+        <input type="text" id="gif-input" />
+        <input type="submit" id="select-gif" value="Go!" />
+        <input type="submit" id="default-btn" value="Load Defaults" />
+      </form>
+    </div>
+    <div class="button-dump"></div>
+    <div class="gif-dump"></div>
+  </body>
+</html>
