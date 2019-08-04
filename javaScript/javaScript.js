@@ -89,13 +89,15 @@ function callGiphy(searchVal) {
 }
 // listening for clicks on buttons to call the api and load 10 gifs
 let handleDynamicBtnClick = e => {
-  if (e.target.className != 'start-btn') {
-    console.log('bad click');
-    return;
-  } else {
+  if (e.target.className === 'start-btn') {
     let btnVal = e.target.innerText;
     console.log(btnVal);
     callGiphy(btnVal);
+  } else if (e.target.className === 'gif-still') {
+    console.log(e.target);
+  } else if (e.target.className != 'start-btn' && 'gif-still') {
+    console.log('bad click');
+    return;
   }
 };
 
