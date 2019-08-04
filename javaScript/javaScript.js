@@ -5,7 +5,7 @@ const btnTarget = document.querySelector('.button-dump');
 const gifTarget = document.querySelector('.gif-dump');
 const submitSearch = document.getElementById('select-gif');
 const gifSearchVal = document.getElementById('gif-input');
-const searchForm = document.getElementById('form-area');
+const searchForm = document.getElementById('gif-form');
 const defBtns = document.getElementById('default-btn');
 const individualBtn = document.querySelector('.start-btn');
 
@@ -114,6 +114,7 @@ let handleDynamicBtnClick = e => {
   if (e.target.className === 'start-btn') {
     console.log(btnVal);
     renderGifs(btnVal);
+    searchForm.reset();
   } else if (e.target.className === 'gif-still') {
     console.log(gifId);
     console.log(btnValStorage);
