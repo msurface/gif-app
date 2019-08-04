@@ -23,7 +23,7 @@ Gif App is a simple app demonstrating the use of Giphy's API [www.giphy.com]. A 
  6. Overall boost in confidence.
 
 ## Scheduled improvements
- * clear gifs before new gifs are added.
+ * ~~clear gifs before new gifs are added.~~ Completed!
  * Have gifs hit the page as static pictures and when clicked they animate.
  * improve the overall design.
  * Make the app responsive.
