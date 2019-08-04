@@ -53,11 +53,11 @@ function addCustomBtn() {
 }
 
 // function to call Giphy API using axios -- grab to data-name
-function callGiphy(searchVal) {
+callGiphy = async searchVal => {
   console.log('callAPI is firing');
   let searchTerm = searchVal;
   let queryURL = `https://api.giphy.com/v1/gifs/search?api_key=6o0cS1ouHsG6lH47U12XF4qlT0XZK1GL&limit=10&q=${searchTerm}`;
-  axios
+  return axios
     .get(queryURL)
     .then(response => {
       // removing the 10 previously loaded gifs before adding new gifs.
@@ -65,21 +65,34 @@ function callGiphy(searchVal) {
         gifTarget.removeChild(gifTarget.firstChild);
         console.log('Gif Target while loop works');
       }
+
+      return response;
+    })
+    .catch(error => {
+      if (error) {
+        console.error(error);
+      }
+    });
+};
+
+// a function to use the API response and build DOM elements
+function renderGifs(searchVal) {
+  callGiphy(searchVal)
+    .then(response => {
+      console.log(response);
       // console.log(response.data.data[0].images.downsized_still);
       // for animated gifs
       // console.log(response.data.data[0].images.original);
       // response.data.data[i].images.original.url;
       for (i = 0; i < response.data.data.length; i++) {
-        // let source = response.data.data[i].images.downsized_still.url;
-        let source = response.data.data[i].images.original.url;
+        let source = response.data.data[i].images.downsized_still.url;
+        // let source = response.data.data[i].images.original.url;
         let imageGif = document.createElement('img');
         imageGif.setAttribute('class', 'gif-still');
         imageGif.setAttribute('id', `gif-${i}`);
         imageGif.setAttribute('src', source);
-        gifTarget.insertBefore(imageGif, gifTarget.childNodes[0]);
+        gifTarget.appendChild(imageGif, gifTarget.childNodes[0]);
       }
-      // may need to add to animate gif
-      // animateGif(event, response);
     })
     .catch(error => {
       if (error) {
@@ -87,41 +100,29 @@ function callGiphy(searchVal) {
       }
     });
 }
+
+// a function to animate the gif clicked by the user
+function animateGif(gifId, event, searchTerm) {
+  console.log(gifId);
+  console.log(event);
+  console.log(searchTerm);
+}
 // listening for clicks on buttons to call the api and load 10 gifs
 let handleDynamicBtnClick = e => {
+  let btnVal = e.target.innerText;
+  let gifId = e.target.id;
   if (e.target.className === 'start-btn') {
-    let btnVal = e.target.innerText;
     console.log(btnVal);
-    callGiphy(btnVal);
+    renderGifs(btnVal);
   } else if (e.target.className === 'gif-still') {
-    console.log(e.target);
+    console.log(gifId);
+    console.log(btnValStorage);
+    animateGif(gifId, e, btnVal);
   } else if (e.target.className != 'start-btn' && 'gif-still') {
     console.log('bad click');
     return;
   }
 };
-
-// need to clear gifs --- figure this one out
-// function clearGifs() {
-//   if (gifTarget.hasChildNodes() === 'true') {
-//     console.log('clearing Gifs working');
-//   } else {
-//     console.log('fUCK');
-//     return;
-//   }
-// }
-
-// animating one gif -- figure this out
-// async function animateGif(event, apiResponse) {
-//   console.log(event);
-//   let apiData = await apiResponse;
-//   if (event.target.className != 'gif-still') {
-//     console.log('bad click');
-//     return;
-//   } else {
-//     console.log(apiData);
-//   }
-// }
 
 // Event listenders for the page
 // on default button click
@@ -130,9 +131,3 @@ defBtns.addEventListener('click', event => renderBtns(event, starterGifs));
 submitSearch.addEventListener('click', addCustomBtn);
 // clicking a dynamic element using event delegation
 document.addEventListener('click', e => handleDynamicBtnClick(e));
-// clear previous gifs from screen
-// document.addEventListener('click', e => {
-//   console.log(e);
-// });
-// animating a gif from a still -- figure this one out
-// document.addEventListener('click', animateGif(event, apiResponse));
