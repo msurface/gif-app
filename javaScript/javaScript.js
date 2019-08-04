@@ -50,6 +50,7 @@ function addCustomBtn() {
     }
   }
   renderBtns(event, customArr);
+  searchForm.reset();
 }
 
 // function to call Giphy API using axios -- grab to data-name
@@ -114,7 +115,6 @@ let handleDynamicBtnClick = e => {
   if (e.target.className === 'start-btn') {
     console.log(btnVal);
     renderGifs(btnVal);
-    searchForm.reset();
   } else if (e.target.className === 'gif-still') {
     console.log(gifId);
   } else if (e.target.className != 'start-btn' && 'gif-still') {
