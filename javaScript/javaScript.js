@@ -101,12 +101,12 @@ function renderGifs(searchVal) {
     });
 }
 
-// a function to animate the gif clicked by the user
-function animateGif(gifId, event, searchTerm) {
-  console.log(gifId);
-  console.log(event);
-  console.log(searchTerm);
-}
+// // a function to animate the gif clicked by the user
+// function animateGif(gifId, event, searchTerm) {
+//   console.log(gifId);
+//   console.log(event);
+//   console.log(searchTerm);
+// }
 // listening for clicks on buttons to call the api and load 10 gifs
 let handleDynamicBtnClick = e => {
   let btnVal = e.target.innerText;
@@ -117,8 +117,6 @@ let handleDynamicBtnClick = e => {
     searchForm.reset();
   } else if (e.target.className === 'gif-still') {
     console.log(gifId);
-    console.log(btnValStorage);
-    animateGif(gifId, e, btnVal);
   } else if (e.target.className != 'start-btn' && 'gif-still') {
     console.log('bad click');
     return;
