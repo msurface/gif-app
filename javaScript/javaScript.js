@@ -85,8 +85,8 @@ function renderGifs(searchVal) {
       // console.log(response.data.data[0].images.original);
       // response.data.data[i].images.original.url;
       for (i = 0; i < response.data.data.length; i++) {
-        let source = response.data.data[i].images.downsized_still.url;
-        // let source = response.data.data[i].images.original.url;
+        // let source = response.data.data[i].images.downsized_still.url;
+        let source = response.data.data[i].images.original.url;
         let imageGif = document.createElement('img');
         imageGif.setAttribute('class', 'gif-still');
         imageGif.setAttribute('id', `gif-${i}`);
