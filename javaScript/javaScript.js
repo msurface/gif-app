@@ -49,7 +49,6 @@ function addCustomBtn() {
       customArr.push(inputVal);
     }
   }
-
   renderBtns(event, customArr);
 }
 
@@ -61,6 +60,11 @@ function callGiphy(searchVal) {
   axios
     .get(queryURL)
     .then(response => {
+      // removing the 10 previously loaded gifs before adding new gifs.
+      while (gifTarget.firstChild) {
+        gifTarget.removeChild(gifTarget.firstChild);
+        console.log('Gif Target while loop works');
+      }
       // console.log(response.data.data[0].images.downsized_still);
       // for animated gifs
       // console.log(response.data.data[0].images.original);
