@@ -48,6 +48,7 @@ function addCustomBtn() {
       renderGifs(inputVal);
     } else {
       customArr.push(inputVal);
+      renderGifs(inputVal);
     }
   }
   renderBtns(event, customArr);
