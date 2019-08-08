@@ -1,7 +1,60 @@
-.start-btn {
+.form-group label,
+input,
+small {
+  margin: 10px 0;
+}
+
+.btn-section {
+  padding: 50px 0;
+  margin-bottom: 35px;
+}
+
+.start-btn,
+.start-btn:link,
+.start-btn:visited {
   margin: 10px 7px;
+  padding: 6px 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px #000;
+  outline: none;
+}
+
+.start-btn:hover {
+  box-shadow: 6px 6px 10px #000;
+}
+
+.start-btn:active {
+  box-shadow: 3px 3px 5px #000;
+}
+
+.start-btn:focus {
+  outline: none;
 }
 
 .gif-still {
   margin: 10px 0;
+  border-radius: 16px;
+}
+
+.btn-goDef,
+.btn-goDef:link,
+.btn-goDef:visited {
+  margin: 15px 5px;
+  padding: 6px 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px #000;
+  outline: none;
+}
+
+.btn-goDef:hover {
+  box-shadow: 6px 6px 10px #000;
+}
+
+.btn-goDef:active {
+  box-shadow: 3px 3px 5px #000;
+}
+
+.gif-section {
+  padding-bottom: 50px;
+  margin-bottom: 35px;
 }

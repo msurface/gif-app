@@ -27,15 +27,47 @@
         </div>
       </div>
     </header>
-    <div class="form-area">
-      <form action="" id="gif-form">
-        <label for="gif-input">Search for a Gif</label>
-        <input type="text" id="gif-input" />
-        <input type="submit" id="select-gif" value="Go!" />
-        <input type="submit" id="default-btn" value="Load Defaults" />
-      </form>
-    </div>
-    <div class="button-dump"></div>
+    <section class="btn-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <form action="" id="gif-form">
+              <div class="form-group">
+                <label for="gif-input">Search Here for a Gif!</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="gif-input"
+                  aria-describedby="SearchGif"
+                  placeholder="Enter a Gif to search"
+                />
+                <small id="gifHelp" class="form-text text-muted"
+                  >Type in a topic you'd like to see gifs of.</small
+                >
+                <div class="row justify-content-center">
+                  <input
+                    class="btn-goDef"
+                    type="submit"
+                    id="select-gif"
+                    value="Go!"
+                  />
+                  <input
+                    class="btn-goDef"
+                    type="submit"
+                    id="default-btn"
+                    value="Load Defaults"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="button-dump"></div>
+        </div>
+      </div>
+    </section>
+
     <section class="gif-section">
       <div class="container">
         <div class="gif-dump"></div>
