@@ -45,6 +45,7 @@ function addCustomBtn() {
   } else {
     if (!customArr || !customArr.length) {
       customArr.push(...starterGifs, inputVal);
+      renderGifs(inputVal);
     } else {
       customArr.push(inputVal);
     }
@@ -161,15 +162,6 @@ function chunkArr(myArray, chunkSize) {
   return tempArr;
 }
 
-// function to wrap a div w/ the class of row around 4 dom elements in the render function
-function wrap(wrapper, gifGroup) {
-  wrapper = document.createElement('div');
-  wrapper.setAttribute('class', 'row');
-  gifGroup.forEach(element => {
-    element.parentNode.insertBefore(wrapper, element);
-    wrapper.appendChild;
-  });
-}
 // Event listenders for the page
 // on default button click
 defBtns.addEventListener('click', event => renderBtns(event, starterGifs));
