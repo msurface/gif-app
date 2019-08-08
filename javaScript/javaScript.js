@@ -87,23 +87,40 @@ function renderGifs(searchVal) {
       // console.log(response.data.data[0].images.original);
       // response.data.data[i].images.original.url;
 
-      // an empty array to hold the construction of the gifs in the for loop.
-      let gifArr = [];
-      for (i = 0; i < response.data.data.length; i++) {
-        // let source = response.data.data[i].images.downsized_still.url;
-        let source = response.data.data[i].images.original.url;
-        let imageGif = document.createElement('img');
-        imageGif.setAttribute('class', 'gif-still');
-        imageGif.setAttribute('id', `gif-${i}`);
-        imageGif.setAttribute('src', source);
-        // gifTarget.appendChild(imageGif, gifTarget.childNodes[0]);
-        gifArr.push(imageGif);
+      // console.log(response.data.data);
+
+      let resArr = chunkArr(response.data.data, 4);
+      for (j = 0; j < resArr.length; j++) {
+        let wrapper = document.createElement('div');
+        wrapper.setAttribute('class', 'row');
+        let gifArr = resArr[j];
+        for (i = 0; i < gifArr.length; i++) {
+          let gifSource = gifArr[i].images.original.url;
+          let imageGif = document.createElement('img');
+          imageGif.setAttribute(
+            'class',
+            'gif-still col-sm-3 col-md-3 col-lg-3 col-xl-3'
+          );
+          imageGif.setAttribute('id', `gif-${i}`);
+          imageGif.setAttribute('src', gifSource);
+          wrapper.append(imageGif);
+          gifTarget.appendChild(wrapper);
+        }
       }
+
+      // an empty array to hold the construction of the gifs in the for loop.
+      // for (i = 0; i < response.data.data.length; i++) {
+      //   // let source = response.data.data[i].images.downsized_still.url;
+      //   let source = response.data.data[i].images.original.url;
+      //   let imageGif = document.createElement('img');
+      //   imageGif.setAttribute('class', 'gif-still');
+      //   imageGif.setAttribute('id', `gif-${i}`);
+      //   imageGif.setAttribute('src', source);
+      //   gifTarget.appendChild(imageGif, gifTarget.childNodes[0]);
+      // }
       // chunking the array and placing in a variable.
       // 4 can be changed later if the user is provided the opportunity
       // to choose how many gifs to return. Must be a multiple of 12.
-      let result = chunkArr(gifArr, 4);
-      console.log(result);
     })
     .catch(error => {
       if (error) {
