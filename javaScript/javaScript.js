@@ -57,7 +57,7 @@ function addCustomBtn() {
 callGiphy = async searchVal => {
   console.log('callAPI is firing');
   let searchTerm = searchVal;
-  let queryURL = `https://api.giphy.com/v1/gifs/search?api_key=6o0cS1ouHsG6lH47U12XF4qlT0XZK1GL&limit=10&q=${searchTerm}`;
+  let queryURL = `https://api.giphy.com/v1/gifs/search?api_key=6o0cS1ouHsG6lH47U12XF4qlT0XZK1GL&limit=12&q=${searchTerm}`;
   return axios
     .get(queryURL)
     .then(response => {
@@ -78,6 +78,7 @@ callGiphy = async searchVal => {
 
 // a function to use the API response and build DOM elements
 function renderGifs(searchVal) {
+  console.log(`SearchVal line 83: ${searchVal}`);
   callGiphy(searchVal)
     .then(response => {
       console.log(response);
@@ -85,6 +86,9 @@ function renderGifs(searchVal) {
       // for animated gifs
       // console.log(response.data.data[0].images.original);
       // response.data.data[i].images.original.url;
+
+      // an empty array to hold the construction of the gifs in the for loop.
+      let gifArr = [];
       for (i = 0; i < response.data.data.length; i++) {
         // let source = response.data.data[i].images.downsized_still.url;
         let source = response.data.data[i].images.original.url;
@@ -92,8 +96,14 @@ function renderGifs(searchVal) {
         imageGif.setAttribute('class', 'gif-still');
         imageGif.setAttribute('id', `gif-${i}`);
         imageGif.setAttribute('src', source);
-        gifTarget.appendChild(imageGif, gifTarget.childNodes[0]);
+        // gifTarget.appendChild(imageGif, gifTarget.childNodes[0]);
+        gifArr.push(imageGif);
       }
+      // chunking the array and placing in a variable.
+      // 4 can be changed later if the user is provided the opportunity
+      // to choose how many gifs to return. Must be a multiple of 12.
+      let result = chunkArr(gifArr, 4);
+      console.log(result);
     })
     .catch(error => {
       if (error) {
@@ -123,6 +133,26 @@ let handleDynamicBtnClick = e => {
   }
 };
 
+// function to chunk gifArr
+function chunkArr(myArray, chunkSize) {
+  let tempArr = [];
+  for (i = 0; i < myArray.length; i += chunkSize) {
+    myChunk = myArray.slice(i, i + chunkSize);
+    tempArr.push(myChunk);
+  }
+
+  return tempArr;
+}
+
+// function to wrap a div w/ the class of row around 4 dom elements in the render function
+function wrap(wrapper, gifGroup) {
+  wrapper = document.createElement('div');
+  wrapper.setAttribute('class', 'row');
+  gifGroup.forEach(element => {
+    element.parentNode.insertBefore(wrapper, element);
+    wrapper.appendChild;
+  });
+}
 // Event listenders for the page
 // on default button click
 defBtns.addEventListener('click', event => renderBtns(event, starterGifs));
